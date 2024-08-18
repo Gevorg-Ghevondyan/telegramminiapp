@@ -1,23 +1,14 @@
 /* styles/styles.css */
-body {
-    font-family: Arial, sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-}
-
 #game-container {
     display: grid;
-    grid-template-columns: repeat(8, 40px); /* Adjust size as needed */
-    grid-template-rows: repeat(8, 40px); /* Adjust size as needed */
+    grid-template-columns: repeat(8, 50px); /* Adjust size as needed */
+    grid-template-rows: repeat(8, 50px); /* Adjust size as needed */
     gap: 2px;
 }
 
 .tile {
-    width: 40px;
-    height: 40px;
+    width: 50px; /* Adjust size as needed */
+    height: 50px; /* Adjust size as needed */
     background-size: cover;
     background-position: center;
 }
