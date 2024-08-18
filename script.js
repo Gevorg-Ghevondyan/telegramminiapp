@@ -5,6 +5,12 @@ let gameInterval = null;
 function startGame() {
     score = 0;
     updateScore();
+
+    // Stop any previous game interval
+    if (gameInterval) {
+        clearInterval(gameInterval);
+    }
+
     gameInterval = setInterval(highlightRandomTile, 1000);
 }
 
@@ -12,6 +18,7 @@ function highlightRandomTile() {
     if (activeTile) {
         activeTile.classList.remove('highlighted');
     }
+
     const tiles = document.querySelectorAll('.tile');
     const randomIndex = Math.floor(Math.random() * tiles.length);
     activeTile = tiles[randomIndex];
@@ -22,6 +29,7 @@ function clickTile(event) {
     if (event.target === activeTile) {
         score++;
         updateScore();
+        highlightRandomTile(); // Highlight a new tile immediately after a correct click
     }
 }
 
