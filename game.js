@@ -1,8 +1,9 @@
 document.addEventListener('DOMContentLoaded', () => {
     const container = document.getElementById('game-container');
     const scoreElement = document.getElementById('score');
-    const rows = 8;
-    const cols = 8;
+    const rows = 8; // Adjust if necessary
+    const cols = 8; // Adjust if necessary
+    const iconSize = 60; // Adjust size of each tile
     const icons = ['gun', 'knife', 'rifle', 'swords', 'weapon'];
     const board = [];
     let selectedTile = null;
@@ -18,11 +19,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 tile.dataset.row = i;
                 tile.dataset.col = j;
                 tile.style.backgroundImage = `url('images/${getRandomIcon()}.png')`;
+                tile.style.width = `${iconSize}px`; // Set the size of the tile
+                tile.style.height = `${iconSize}px`; // Set the size of the tile
                 tile.addEventListener('click', handleTileClick);
                 container.appendChild(tile);
                 board[i][j] = tile;
             }
         }
+        container.style.width = `${cols * iconSize}px`; // Set the width of the container
+        container.style.height = `${rows * iconSize}px`; // Set the height of the container
     }
 
     function getRandomIcon() {
@@ -128,16 +133,26 @@ document.addEventListener('DOMContentLoaded', () => {
                     emptySpaces++;
                 } else if (emptySpaces > 0) {
                     tile.style.transition = 'top 0.5s ease-out';
-                    tile.style.top = `${(emptySpaces * 60) - 60}px`;
+                    tile.style.top = `${(emptySpaces - 1) * iconSize}px`;
                     board[row + emptySpaces][col] = tile;
                     board[row][col] = null;
                 }
             }
             for (let i = 0; i < emptySpaces; i++) {
                 const newTile = board[i][col];
-                newTile.style.top = `${i * 60}px`;
-                newTile.style.backgroundImage = `url('images/${getRandomIcon()}.png')`;
-                board[i][col] = newTile;
+                if (!newTile) {
+                    const tile = document.createElement('div');
+                    tile.className = 'tile';
+                    tile.style.backgroundImage = `url('images/${getRandomIcon()}.png')`;
+                    tile.style.width = `${iconSize}px`;
+                    tile.style.height = `${iconSize}px`;
+                    tile.style.top = `${i * iconSize}px`;
+                    tile.dataset.row = i;
+                    tile.dataset.col = col;
+                    tile.addEventListener('click', handleTileClick);
+                    container.appendChild(tile);
+                    board[i][col] = tile;
+                }
             }
         }
     }
