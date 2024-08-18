@@ -82,7 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function checkMatches() {
         let foundMatch = false;
         const tilesToRemove = [];
-        
+
         function collectMatches(startRow, startCol, directionRow, directionCol) {
             let match = [];
             let i = startRow;
@@ -115,6 +115,7 @@ document.addEventListener('DOMContentLoaded', () => {
             tilesToRemove.forEach(tile => {
                 tile.style.backgroundImage = `url('images/${getRandomIcon()}.png')`;
                 tile.classList.add('falling'); // Add a class to handle fall animation
+                tile.dataset.match = 'true'; // Mark as matched
             });
             updateScore(tilesToRemove.length);
             setTimeout(() => {
@@ -131,11 +132,11 @@ document.addEventListener('DOMContentLoaded', () => {
             let emptySpaces = 0;
             for (let row = rows - 1; row >= 0; row--) {
                 const tile = board[row][col];
-                if (tile.style.backgroundImage === `url('images/${getRandomIcon()}.png')`) {
+                if (tile.dataset.match === 'true') {
                     emptySpaces++;
                 } else if (emptySpaces > 0) {
                     tile.style.transition = 'top 0.5s ease-out';
-                    tile.style.top = `${(emptySpaces - 1) * iconSize}px`;
+                    tile.style.top = `${(row + emptySpaces) * iconSize}px`;
                     board[row + emptySpaces][col] = tile;
                     board[row][col] = null;
                 }
@@ -146,9 +147,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 newTile.style.backgroundImage = `url('images/${getRandomIcon()}.png')`;
                 newTile.style.width = `${iconSize}px`;
                 newTile.style.height = `${iconSize}px`;
-                newTile.style.top = `${(rows - emptySpaces + i) * iconSize}px`;
+                newTile.style.top = `${(i - emptySpaces) * iconSize}px`;
                 newTile.dataset.row = i;
                 newTile.dataset.col = col;
+                newTile.dataset.match = 'false'; // Ensure new tiles are not marked as matched
                 newTile.addEventListener('click', handleTileClick);
                 container.appendChild(newTile);
                 board[i][col] = newTile;
@@ -156,6 +158,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         document.querySelectorAll('.falling').forEach(tile => {
             tile.classList.remove('falling'); // Remove the fall class after animation
+            tile.dataset.match = 'false'; // Reset match status
         });
     }
 
