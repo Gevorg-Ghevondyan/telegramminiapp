@@ -12,15 +12,15 @@ h1 {
 
 .game-board {
     display: grid;
-    grid-template-columns: repeat(4, 35px); /* Slightly smaller grid columns */
+    grid-template-columns: repeat(4, 70px); /* Slightly smaller grid columns */
     grid-gap: 2px; /* Slightly smaller gaps between cards */
     justify-content: center;
     margin: 0 auto;
 }
 
 .card {
-    width: 35px; /* Slightly smaller card width */
-    height: 35px; /* Slightly smaller card height */
+    width: 70px; /* Slightly smaller card width */
+    height: 70px; /* Slightly smaller card height */
     display: flex;
     align-items: center;
     justify-content: center;
