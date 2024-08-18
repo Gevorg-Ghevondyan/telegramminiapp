@@ -1,13 +1,13 @@
 #game-container {
     display: grid;
-    grid-template-columns: repeat(8, 60px); /* 8 columns, adjust size accordingly */
-    grid-template-rows: repeat(8, 60px); /* 8 rows, adjust size accordingly */
-    gap: 0px; /* No gap between tiles */
+    grid-template-columns: repeat(6, 50px); /* Adjust according to the board size */
+    grid-template-rows: repeat(6, 50px); /* Adjust according to the board size */
+    gap: 0px;
 }
 
 .tile {
-    width: 60px;
-    height: 60px;
+    width: 50px;
+    height: 50px;
     background-size: cover;
     background-position: center;
     cursor: pointer;
