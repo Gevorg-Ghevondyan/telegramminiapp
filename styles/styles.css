@@ -1,21 +1,11 @@
+/* styles/styles.css */
 body {
     font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
     display: flex;
-    flex-direction: column;
+    justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #f0f0f0;
-}
-
-h1 {
-    margin-top: 20px;
-}
-
-#score {
-    margin: 20px;
-    font-size: 1.5em;
+    margin: 0;
 }
 
 #game-container {
@@ -23,21 +13,11 @@ h1 {
     grid-template-columns: repeat(8, 40px); /* Adjust size as needed */
     grid-template-rows: repeat(8, 40px); /* Adjust size as needed */
     gap: 2px;
-    margin: 0 auto;
 }
 
 .tile {
     width: 40px;
     height: 40px;
     background-size: cover;
-    transition: transform 0.3s ease;
-}
-
-
-.tile.selected {
-    transform: scale(1.1); /* Highlight selected tile */
-}
-
-.hidden {
-    display: none;
+    background-position: center;
 }

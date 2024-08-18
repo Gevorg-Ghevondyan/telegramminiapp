@@ -1,8 +1,9 @@
+// game.js
 document.addEventListener('DOMContentLoaded', () => {
     const container = document.getElementById('game-container');
     const scoreElement = document.getElementById('score');
-    const rows = 8; // Number of rows in the board
-    const cols = 8; // Number of columns in the board
+    const rows = 8;
+    const cols = 8;
     const icons = ['gun', 'knife', 'rifle', 'swords', 'weapon'];
     const board = [];
     let selectedTile = null;
@@ -76,7 +77,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function checkMatches() {
         let foundMatch = false;
         const tilesToRemove = [];
-
+        
         function collectMatches(startRow, startCol, directionRow, directionCol) {
             let match = [];
             let i = startRow;
@@ -128,14 +129,14 @@ document.addEventListener('DOMContentLoaded', () => {
                     emptySpaces++;
                 } else if (emptySpaces > 0) {
                     tile.style.transition = 'top 0.5s ease-out';
-                    tile.style.top = `${(emptySpaces * 40) - 40}px`;
+                    tile.style.top = `${(emptySpaces * 60) - 60}px`;
                     board[row + emptySpaces][col] = tile;
                     board[row][col] = null;
                 }
             }
             for (let i = 0; i < emptySpaces; i++) {
                 const newTile = board[i][col];
-                newTile.style.top = `${i * 40}px`;
+                newTile.style.top = `${i * 60}px`;
                 newTile.style.backgroundImage = `url('styles/icons/${getRandomIcon()}.png')`;
                 board[i][col] = newTile;
             }

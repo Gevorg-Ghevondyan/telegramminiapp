@@ -1,27 +1,43 @@
-from telegram import Update
-from telegram.ext import Updater, CommandHandler, CallbackContext
+from telegram import InlineKeyboardButton, InlineKeyboardMarkup, Update
+from telegram.ext import Application, CommandHandler, CallbackContext
+import asyncio
+import logging
+import nest_asyncio
 
-# Replace 'YOUR_TOKEN_HERE' with your bot's API token
+# Apply nest_asyncio to allow nested event loops
+nest_asyncio.apply()
+
+# Replace 'YOUR_BOT_API_TOKEN' with your actual bot token
 TOKEN = "5980991673:AAG1GZwKgYn6AybukIT_HTwrpkzHSHc2CfM"  # Your actual bot token
-GAME_URL = 'https://your-game-hosting-service.com/your-game'
 
-def start(update: Update, context: CallbackContext) -> None:
-    user = update.message.from_user
-    update.message.reply_text(f'Hi {user.first_name}! Use /play to start the game.')
+# Configure logging
+logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO)
 
-def play(update: Update, context: CallbackContext) -> None:
-    update.message.reply_text(f'Play the game here: {GAME_URL}')
+# Start command handler
+async def start(update: Update, context: CallbackContext):
+    keyboard = [
+        [InlineKeyboardButton("Play Tapping Game", web_app=dict(url='https://gevorg-ghevondyan.github.io/telegramminiapp/'))]  # Replace with your web app URL
+    ]
+    reply_markup = InlineKeyboardMarkup(keyboard)
+    await update.message.reply_text('Welcome! Click the button below to play the tapping game.', reply_markup=reply_markup)
 
-def main() -> None:
-    updater = Updater(TOKEN)
+# Main function
+async def main():
+    logging.info("Starting bot...")
+    application = Application.builder().token(TOKEN).build()
+    logging.info("Application built.")
+    
+    application.add_handler(CommandHandler("start", start))
+    logging.info("Handler added.")
+    
+    # Run the bot
+    await application.run_polling()
 
-    dispatcher = updater.dispatcher
-
-    dispatcher.add_handler(CommandHandler("start", start))
-    dispatcher.add_handler(CommandHandler("play", play))
-
-    updater.start_polling()
-    updater.idle()
-
+# Ensure we are not in an interactive environment
 if __name__ == '__main__':
-    main()
+    try:
+        asyncio.run(main())
+    except RuntimeError as e:
+        logging.error(f"RuntimeError: {e}")
+    except Exception as e:
+        logging.error(f"An error occurred: {e}")

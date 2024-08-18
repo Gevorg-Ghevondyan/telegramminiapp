@@ -4,32 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Game</title>
-    <style>
-        #game-container {
-            display: grid;
-            grid-template-columns: repeat(8, 40px);
-            grid-template-rows: repeat(8, 40px);
-            gap: 2px;
-            margin: 0 auto;
-        }
-        .tile {
-            width: 40px;
-            height: 40px;
-            background-color: lightgrey;
-        }
-    </style>
+    <link rel="stylesheet" href="styles/styles.css">
 </head>
 <body>
     <div id="game-container"></div>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const container = document.getElementById('game-container');
-            for (let i = 0; i < 64; i++) {
-                const tile = document.createElement('div');
-                tile.className = 'tile';
-                container.appendChild(tile);
-            }
-        });
-    </script>
+    <div id="score">Score: 0</div>
+    <script src="game.js"></script>
 </body>
 </html>
