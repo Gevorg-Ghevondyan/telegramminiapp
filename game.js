@@ -76,7 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function checkMatches() {
         let foundMatch = false;
         const tilesToRemove = [];
-
+        
         function collectMatches(startRow, startCol, directionRow, directionCol) {
             let match = [];
             let i = startRow;
@@ -124,7 +124,7 @@ document.addEventListener('DOMContentLoaded', () => {
             let emptySpaces = 0;
             for (let row = rows - 1; row >= 0; row--) {
                 const tile = board[row][col];
-                if (tile.style.backgroundImage.includes('images/')) {
+                if (tile.style.backgroundImage === `url('images/${getRandomIcon()}.png')`) {
                     emptySpaces++;
                 } else if (emptySpaces > 0) {
                     tile.style.transition = 'top 0.5s ease-out';
