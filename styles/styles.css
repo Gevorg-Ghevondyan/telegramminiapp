@@ -12,5 +12,9 @@
     background-size: cover;
     background-position: center;
     cursor: pointer;
-    transition: background-image 0.2s ease;
+    transition: background-image 0.2s ease, top 0.5s ease-out;
+}
+
+.tile.falling {
+    transition: top 0.5s ease-out;
 }
