@@ -1,9 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
     const container = document.getElementById('game-container');
     const scoreElement = document.getElementById('score');
-    const rows = 5; // Adjust size to fit better
-    const cols = 5; // Adjust size to fit better
-    const iconSize = 60; // Adjust size to fit within the window
+    const rows = 8;
+    const cols = 8;
     const icons = ['gun', 'knife', 'rifle', 'swords', 'weapon'];
     const board = [];
     let selectedTile = null;
@@ -11,9 +10,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function initBoard() {
         container.innerHTML = '';
-        container.style.width = `${cols * iconSize}px`; // Adjust width of container
-        container.style.height = `${rows * iconSize}px`; // Adjust height of container
-
         for (let i = 0; i < rows; i++) {
             board[i] = [];
             for (let j = 0; j < cols; j++) {
@@ -22,8 +18,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 tile.dataset.row = i;
                 tile.dataset.col = j;
                 tile.style.backgroundImage = `url('images/${getRandomIcon()}.png')`;
-                tile.style.width = `${iconSize}px`; // Set the size of each tile
-                tile.style.height = `${iconSize}px`; // Set the size of each tile
                 tile.addEventListener('click', handleTileClick);
                 container.appendChild(tile);
                 board[i][j] = tile;
@@ -114,8 +108,6 @@ document.addEventListener('DOMContentLoaded', () => {
         if (foundMatch) {
             tilesToRemove.forEach(tile => {
                 tile.style.backgroundImage = `url('images/${getRandomIcon()}.png')`;
-                tile.classList.add('falling'); // Add a class to handle fall animation
-                tile.dataset.match = 'true'; // Mark as matched
             });
             updateScore(tilesToRemove.length);
             setTimeout(() => {
@@ -132,39 +124,27 @@ document.addEventListener('DOMContentLoaded', () => {
             let emptySpaces = 0;
             for (let row = rows - 1; row >= 0; row--) {
                 const tile = board[row][col];
-                if (tile.dataset.match === 'true') {
+                if (tile.style.backgroundImage === `url('images/${getRandomIcon()}.png')`) {
                     emptySpaces++;
                 } else if (emptySpaces > 0) {
                     tile.style.transition = 'top 0.5s ease-out';
-                    tile.style.top = `${(row + emptySpaces) * iconSize}px`;
+                    tile.style.top = `${(emptySpaces * 60) - 60}px`;
                     board[row + emptySpaces][col] = tile;
                     board[row][col] = null;
                 }
             }
             for (let i = 0; i < emptySpaces; i++) {
-                const newTile = document.createElement('div');
-                newTile.className = 'tile falling'; // Add a class to handle fall animation
+                const newTile = board[i][col];
+                newTile.style.top = `${i * 60}px`;
                 newTile.style.backgroundImage = `url('images/${getRandomIcon()}.png')`;
-                newTile.style.width = `${iconSize}px`;
-                newTile.style.height = `${iconSize}px`;
-                newTile.style.top = `${(i - emptySpaces) * iconSize}px`;
-                newTile.dataset.row = i;
-                newTile.dataset.col = col;
-                newTile.dataset.match = 'false'; // Ensure new tiles are not marked as matched
-                newTile.addEventListener('click', handleTileClick);
-                container.appendChild(newTile);
                 board[i][col] = newTile;
             }
         }
-        document.querySelectorAll('.falling').forEach(tile => {
-            tile.classList.remove('falling'); // Remove the fall class after animation
-            tile.dataset.match = 'false'; // Reset match status
-        });
     }
 
     function updateScore(points) {
         score += points;
-        scoreElement.textContent = score;
+        scoreElement.textContent = `Score: ${score}`;
     }
 
     initBoard();
