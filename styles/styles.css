@@ -18,21 +18,26 @@ h1 {
     font-size: 1.5em;
 }
 
-/* styles.css */
+/* Adjust the size of the game board and tiles */
 #game-container {
-    width: 240px; /* Adjust to desired width */
-    height: 240px; /* Adjust to desired height */
     display: grid;
-    grid-template-columns: repeat(8, 1fr);
-    grid-template-rows: repeat(8, 1fr);
+    grid-template-columns: repeat(8, 40px); /* Adjust width */
+    grid-template-rows: repeat(8, 40px); /* Adjust height */
+    gap: 2px; /* Space between tiles */
+    margin: 0 auto;
 }
 
 .tile {
-    width: 10px;  /* Reduce size */
-    height: 10px; /* Reduce size */
+    width: 40px; /* Adjust width */
+    height: 40px; /* Adjust height */
     background-size: cover;
-    cursor: pointer;
+    transition: transform 0.3s ease;
 }
+
+.tile.selected {
+    transform: scale(1.1); /* Highlight selected tile */
+}
+
 
 
 
