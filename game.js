@@ -141,20 +141,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
             for (let i = 0; i < emptySpaces; i++) {
-                const newTile = board[i][col];
-                if (!newTile) {
-                    const tile = document.createElement('div');
-                    tile.className = 'tile falling'; // Add a class to handle fall animation
-                    tile.style.backgroundImage = `url('images/${getRandomIcon()}.png')`;
-                    tile.style.width = `${iconSize}px`;
-                    tile.style.height = `${iconSize}px`;
-                    tile.style.top = `${(rows - emptySpaces + i) * iconSize}px`;
-                    tile.dataset.row = i;
-                    tile.dataset.col = col;
-                    tile.addEventListener('click', handleTileClick);
-                    container.appendChild(tile);
-                    board[i][col] = tile;
-                }
+                const newTile = document.createElement('div');
+                newTile.className = 'tile falling'; // Add a class to handle fall animation
+                newTile.style.backgroundImage = `url('images/${getRandomIcon()}.png')`;
+                newTile.style.width = `${iconSize}px`;
+                newTile.style.height = `${iconSize}px`;
+                newTile.style.top = `${(rows - emptySpaces + i) * iconSize}px`;
+                newTile.dataset.row = i;
+                newTile.dataset.col = col;
+                newTile.addEventListener('click', handleTileClick);
+                container.appendChild(newTile);
+                board[i][col] = newTile;
             }
         }
         document.querySelectorAll('.falling').forEach(tile => {
