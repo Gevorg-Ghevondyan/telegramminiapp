@@ -18,18 +18,22 @@ h1 {
     font-size: 1.5em;
 }
 
+/* styles.css */
 #game-container {
+    width: 240px; /* Adjust to desired width */
+    height: 240px; /* Adjust to desired height */
     display: grid;
-    grid-template-columns: repeat(8, 40px); /* Smaller tiles, adjust as needed */
-    grid-template-rows: repeat(8, 40px);    /* Smaller tiles, adjust as needed */
-    gap: 2px; /* Space between tiles */
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: repeat(8, 1fr);
 }
 
 .tile {
-    width: 40px;  /* Adjusted size */
-    height: 40px; /* Adjusted size */
-    background-size: contain; /* Ensure icons fit well */
+    width: 30px;  /* Reduce size */
+    height: 30px; /* Reduce size */
+    background-size: cover;
+    cursor: pointer;
 }
+
 
 
 .hidden {
