@@ -28,8 +28,8 @@ h1 {
 }
 
 .tile {
-    width: 30px;  /* Reduce size */
-    height: 30px; /* Reduce size */
+    width: 10px;  /* Reduce size */
+    height: 10px; /* Reduce size */
     background-size: cover;
     cursor: pointer;
 }
