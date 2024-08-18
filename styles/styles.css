@@ -20,21 +20,15 @@ h1 {
 
 #game-container {
     display: grid;
-    grid-template-columns: repeat(8, 60px);
-    grid-template-rows: repeat(8, 60px);
-    gap: 2px;
-    background-color: #fff;
-    border: 1px solid #ddd;
-    position: relative;
+    grid-template-columns: repeat(8, 40px); /* Smaller tiles, adjust as needed */
+    grid-template-rows: repeat(8, 40px);    /* Smaller tiles, adjust as needed */
+    gap: 2px; /* Space between tiles */
 }
 
 .tile {
-    width: 40px;  /* Adjust the width */
-    height: 40px; /* Adjust the height */
-    background-size: cover;
-    margin: 1px;
-    position: relative;
-    transition: top 0.5s ease-out;
+    width: 40px;  /* Adjusted size */
+    height: 40px; /* Adjusted size */
+    background-size: contain; /* Ensure icons fit well */
 }
 
 
