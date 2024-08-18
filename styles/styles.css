@@ -1,23 +1,34 @@
 body {
     font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 0;
 }
 
-#game-container {
+h1 {
+    margin: 20px;
+}
+
+.game-board {
     display: grid;
-    grid-template-columns: repeat(8, 60px); /* 8 columns with 60px width */
-    gap: 2px; /* Space between tiles */
-    margin: auto;
-    width: fit-content;
+    grid-template-columns: repeat(4, 100px);
+    grid-gap: 10px;
+    justify-content: center;
+    margin: 0 auto;
 }
 
-.tile {
-    width: 60px;
-    height: 60px;
-    background-size: cover;
+.card {
+    width: 100px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
     cursor: pointer;
-    transition: background 0.3s;
 }
 
-.selected {
-    border: 2px solid #000;
+.card.flipped {
+    background-color: #fff;
 }
