@@ -1,9 +1,9 @@
 document.addEventListener('DOMContentLoaded', () => {
     const container = document.getElementById('game-container');
     const scoreElement = document.getElementById('score');
-    const rows = 8; // Adjust if necessary
-    const cols = 8; // Adjust if necessary
-    const iconSize = 60; // Adjust size of each tile
+    const rows = 6; // Reduced size for fitting better
+    const cols = 6; // Reduced size for fitting better
+    const iconSize = 50; // Reduced tile size for fitting better
     const icons = ['gun', 'knife', 'rifle', 'swords', 'weapon'];
     const board = [];
     let selectedTile = null;
@@ -11,6 +11,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function initBoard() {
         container.innerHTML = '';
+        container.style.width = `${cols * iconSize}px`; // Adjust width of container
+        container.style.height = `${rows * iconSize}px`; // Adjust height of container
+
         for (let i = 0; i < rows; i++) {
             board[i] = [];
             for (let j = 0; j < cols; j++) {
@@ -19,15 +22,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 tile.dataset.row = i;
                 tile.dataset.col = j;
                 tile.style.backgroundImage = `url('images/${getRandomIcon()}.png')`;
-                tile.style.width = `${iconSize}px`; // Set the size of the tile
-                tile.style.height = `${iconSize}px`; // Set the size of the tile
+                tile.style.width = `${iconSize}px`; // Set the size of each tile
+                tile.style.height = `${iconSize}px`; // Set the size of each tile
                 tile.addEventListener('click', handleTileClick);
                 container.appendChild(tile);
                 board[i][j] = tile;
             }
         }
-        container.style.width = `${cols * iconSize}px`; // Set the width of the container
-        container.style.height = `${rows * iconSize}px`; // Set the height of the container
     }
 
     function getRandomIcon() {
