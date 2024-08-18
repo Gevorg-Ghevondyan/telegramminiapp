@@ -1,28 +1,15 @@
-/* Ensure the game container takes up most of the available space */
 #game-container {
     display: grid;
-    grid-template-columns: repeat(8, 1fr); /* Adjust the number of columns */
-    grid-template-rows: repeat(8, 1fr); /* Adjust the number of rows */
-    gap: 2px; /* Space between tiles */
-    width: 100vw; /* Full width of the viewport */
-    height: 100vh; /* Full height of the viewport */
-    max-width: 400px; /* Adjust to fit your desired maximum width */
-    max-height: 400px; /* Adjust to fit your desired maximum height */
-    margin: auto; /* Center the game container */
+    grid-template-columns: repeat(8, 60px); /* 8 columns, adjust size accordingly */
+    grid-template-rows: repeat(8, 60px); /* 8 rows, adjust size accordingly */
+    gap: 0px; /* No gap between tiles */
 }
 
-/* Tile styles */
 .tile {
-    width: 100%;
-    height: 100%;
+    width: 60px;
+    height: 60px;
     background-size: cover;
     background-position: center;
     cursor: pointer;
-}
-
-/* Optional: Score display */
-#score {
-    text-align: center;
-    font-size: 1.5rem;
-    margin-bottom: 10px;
+    transition: background-image 0.2s ease;
 }
