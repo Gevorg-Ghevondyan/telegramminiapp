@@ -1,13 +1,14 @@
 #game-container {
     display: grid;
-    grid-template-columns: repeat(6, 50px); /* Adjust according to the board size */
-    grid-template-rows: repeat(6, 50px); /* Adjust according to the board size */
+    grid-template-columns: repeat(5, 60px); /* Adjust according to new board size */
+    grid-template-rows: repeat(5, 60px); /* Adjust according to new board size */
     gap: 0px;
+    position: relative;
 }
 
 .tile {
-    width: 50px;
-    height: 50px;
+    width: 60px; /* Match to iconSize */
+    height: 60px; /* Match to iconSize */
     background-size: cover;
     background-position: center;
     cursor: pointer;
