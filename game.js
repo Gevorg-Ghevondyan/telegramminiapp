@@ -1,9 +1,9 @@
 document.addEventListener('DOMContentLoaded', () => {
     const container = document.getElementById('game-container');
     const scoreElement = document.getElementById('score');
-    const rows = 6; // Reduced size for fitting better
-    const cols = 6; // Reduced size for fitting better
-    const iconSize = 50; // Reduced tile size for fitting better
+    const rows = 5; // Adjust size to fit better
+    const cols = 5; // Adjust size to fit better
+    const iconSize = 60; // Adjust size to fit within the window
     const icons = ['gun', 'knife', 'rifle', 'swords', 'weapon'];
     const board = [];
     let selectedTile = null;
@@ -82,7 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function checkMatches() {
         let foundMatch = false;
         const tilesToRemove = [];
-        
+
         function collectMatches(startRow, startCol, directionRow, directionCol) {
             let match = [];
             let i = startRow;
