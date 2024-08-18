@@ -23,7 +23,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 board[i][j] = tile;
             }
         }
-        // Call `applyGravity` to ensure that tiles fall into place
         applyGravity();
     }
 
