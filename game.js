@@ -1,4 +1,3 @@
-// game.js
 document.addEventListener('DOMContentLoaded', () => {
     const container = document.getElementById('game-container');
     const scoreElement = document.getElementById('score');
@@ -18,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 tile.className = 'tile';
                 tile.dataset.row = i;
                 tile.dataset.col = j;
-                tile.style.backgroundImage = `url('styles/icons/${getRandomIcon()}.png')`;
+                tile.style.backgroundImage = `url('images/${getRandomIcon()}.png')`;
                 tile.addEventListener('click', handleTileClick);
                 container.appendChild(tile);
                 board[i][j] = tile;
@@ -108,7 +107,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (foundMatch) {
             tilesToRemove.forEach(tile => {
-                tile.style.backgroundImage = `url('styles/icons/${getRandomIcon()}.png')`;
+                tile.style.backgroundImage = `url('images/${getRandomIcon()}.png')`;
             });
             updateScore(tilesToRemove.length);
             setTimeout(() => {
@@ -125,7 +124,7 @@ document.addEventListener('DOMContentLoaded', () => {
             let emptySpaces = 0;
             for (let row = rows - 1; row >= 0; row--) {
                 const tile = board[row][col];
-                if (tile.style.backgroundImage === `url('styles/icons/${getRandomIcon()}.png')`) {
+                if (tile.style.backgroundImage === `url('images/${getRandomIcon()}.png')`) {
                     emptySpaces++;
                 } else if (emptySpaces > 0) {
                     tile.style.transition = 'top 0.5s ease-out';
@@ -137,7 +136,7 @@ document.addEventListener('DOMContentLoaded', () => {
             for (let i = 0; i < emptySpaces; i++) {
                 const newTile = board[i][col];
                 newTile.style.top = `${i * 60}px`;
-                newTile.style.backgroundImage = `url('styles/icons/${getRandomIcon()}.png')`;
+                newTile.style.backgroundImage = `url('images/${getRandomIcon()}.png')`;
                 board[i][col] = newTile;
             }
         }
