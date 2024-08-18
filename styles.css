@@ -6,24 +6,25 @@ body {
 }
 
 h1 {
-    margin: 20px;
+    margin: 5px;
+    font-size: 1rem; /* Even smaller heading size */
 }
 
 .game-board {
     display: grid;
-    grid-template-columns: repeat(4, 50px);
-    grid-gap: 10px;
+    grid-template-columns: repeat(4, 30px); /* Smaller grid columns */
+    grid-gap: 3px; /* Smaller gaps between cards */
     justify-content: center;
     margin: 0 auto;
 }
 
 .card {
-    width: 50px;
-    height: 50px;
+    width: 30px; /* Smaller card width */
+    height: 30px; /* Smaller card height */
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 2rem;
+    font-size: 1rem; /* Smaller emoji size */
     background-color: #f0f0f0;
     border: 1px solid #ccc;
     cursor: pointer;
@@ -33,4 +34,9 @@ h1 {
     background-color: #fff;
 }
 
+#restart-button {
+    margin-top: 10px;
+    padding: 3px 6px; /* Smaller button */
+    font-size: 0.8rem; /* Smaller text size */
+}
 
