@@ -82,7 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function checkMatches() {
         let foundMatch = false;
         const tilesToRemove = [];
-
+        
         function collectMatches(startRow, startCol, directionRow, directionCol) {
             let match = [];
             let i = startRow;
@@ -114,6 +114,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (foundMatch) {
             tilesToRemove.forEach(tile => {
                 tile.style.backgroundImage = `url('images/${getRandomIcon()}.png')`;
+                tile.classList.add('falling'); // Add a class to handle fall animation
             });
             updateScore(tilesToRemove.length);
             setTimeout(() => {
@@ -143,11 +144,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 const newTile = board[i][col];
                 if (!newTile) {
                     const tile = document.createElement('div');
-                    tile.className = 'tile';
+                    tile.className = 'tile falling'; // Add a class to handle fall animation
                     tile.style.backgroundImage = `url('images/${getRandomIcon()}.png')`;
                     tile.style.width = `${iconSize}px`;
                     tile.style.height = `${iconSize}px`;
-                    tile.style.top = `${i * iconSize}px`;
+                    tile.style.top = `${(rows - emptySpaces + i) * iconSize}px`;
                     tile.dataset.row = i;
                     tile.dataset.col = col;
                     tile.addEventListener('click', handleTileClick);
@@ -156,6 +157,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
         }
+        document.querySelectorAll('.falling').forEach(tile => {
+            tile.classList.remove('falling'); // Remove the fall class after animation
+        });
     }
 
     function updateScore(points) {
